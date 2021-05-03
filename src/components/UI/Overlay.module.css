@@ -9,6 +9,50 @@
     max-height: 100%;
     z-index: 1010;
     background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    height: 60px;
+    background-color: #572187;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.message {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 1.2rem;
+    align-self: start;
+    flex-grow: 1;
+}
+
+.buttons {
+    height: 50px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    font-size: 1.2rem;
+    background-color: #572187;
+    color: white;
+    /*border-style: none;*/
+    border-color: #572187;
+    padding: 5px 15px;
+    cursor: pointer;
 }
 
 .closed {
