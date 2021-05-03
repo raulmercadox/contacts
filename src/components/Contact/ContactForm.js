@@ -18,6 +18,10 @@ const ContactForm = (props) => {
         setStateAge(aValue);
     }
 
+    const onClose = () => {
+        setStateValid(true);
+    }
+
     const submitContact = event => {
         event.preventDefault();
         if (userName.trim().length === 0)
@@ -49,7 +53,7 @@ const ContactForm = (props) => {
 
     return (
       <React.Fragment>
-          {!valid && <Modal message={message}></Modal>}
+          {!valid && <Modal message={message} onClose={onClose}></Modal>}
           <FormControl label="Username" onChange={setUserName} initialValue={userName} type="text"></FormControl>
           <FormControl label="Age (Years)" onChange={setAge} initialValue={age} type="number"></FormControl>
           <button className={styles.button} type="submit" onClick={submitContact}>Add User</button>

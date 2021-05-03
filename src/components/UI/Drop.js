@@ -1,7 +1,7 @@
 import styles from './Drop.module.css';
 
 const Drop = (props) => {
-    return <div className={styles.drop}>
+    return <div id='drop' className={styles.drop} onClick={props.onClose}>
 
     </div>
 };
