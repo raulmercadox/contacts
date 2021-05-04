@@ -1,10 +1,24 @@
 .button {
     display: inline-block;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 20px;
     font-size: 1.3rem;
     background-color: #572187;
     color: white;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+
+.form-control label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-control input {
+    font-size: 1.4rem;
 }

@@ -1,22 +1,23 @@
-import FormControl from "./FormControl";
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import styles from './ContactForm.module.css';
 import Modal from '../UI/Modal';
 
 const ContactForm = (props) => {
 
-    const [userName, setStateUserName] = useState('');
-    const [age, setStateAge] = useState('');
+    // const [userName, setStateUserName] = useState('');
+    // const [age, setStateAge] = useState('');
     const [message, setStateMessage] = useState('');
     const [valid, setStateValid] = useState(true);
+    const theNameRef = useRef();
+    const theAgeRef = useRef();
 
-    const setUserName = (aValue) => {
-        setStateUserName(aValue);
-    }
-
-    const setAge = (aValue) => {
-        setStateAge(aValue);
-    }
+    // const setUserName = (aValue) => {
+    //     setStateUserName(aValue);
+    // }
+    //
+    // const setAge = (aValue) => {
+    //     setStateAge(aValue);
+    // }
 
     const onClose = () => {
         setStateValid(true);
@@ -24,38 +25,48 @@ const ContactForm = (props) => {
 
     const submitContact = event => {
         event.preventDefault();
-        if (userName.trim().length === 0)
+        const theName = theNameRef.current.value;
+        const theAge = theAgeRef.current.value;
+        if (theName.trim().length === 0)
         {
             setStateMessage('Especifique un nombre');
             setStateValid(false);
             return;
         }
-        if (age.trim().length === 0)
+        if (theAge.trim().length === 0)
         {
             setStateMessage('Especifique una edad');
             setStateValid(false);
             return;
         }
-        if (Number(age) < 0) {
+        if (Number(theAge) < 0) {
             setStateMessage('Especifique una edad mayor a 0');
             setStateValid(false);
             return;
         }
         const contact = {
-            name : userName,
-            age: age,
+            name : theName,
+            age: theAge,
             key: Math.random().toString()
         };
         props.onSubmitContact(contact);
-        setStateUserName('');
-        setStateAge('');
+        // setStateUserName('');
+        // setStateAge('');
+        theNameRef.current.value = '';
+        theAgeRef.current.value = '';
     };
 
     return (
       <React.Fragment>
           {!valid && <Modal message={message} onClose={onClose}></Modal>}
-          <FormControl label="Username" onChange={setUserName} initialValue={userName} type="text"></FormControl>
-          <FormControl label="Age (Years)" onChange={setAge} initialValue={age} type="number"></FormControl>
+          <div className={styles["form-control"]}>
+              <label>Username</label>
+              <input type="text" ref={theNameRef} />
+          </div>
+          <div className={styles["form-control"]}>
+              <label>Age (Years)</label>
+              <input type="number" ref={theAgeRef}/>
+          </div>
           <button className={styles.button} type="submit" onClick={submitContact}>Add User</button>
       </React.Fragment>
     );
